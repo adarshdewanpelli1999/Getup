@@ -3,54 +3,169 @@ This is the app built with glide
 Link live app: https://adarsh-m96f.glide.page/dl/a400f7
 
 
-Overview
-This app is built for individuals who love meeting new people, attending local events, 
-and planning group activities. Whether you're planning a spontaneous trip, 
-organizing a weekend meetup, or hosting a public event, this app lets 
-users stay connected and organized effortlessly.
+1. Executive Summary
 
+SocialConnect is a mobile and web application designed for individuals who enjoy meeting new people, attending local events, and planning group trips. The app features two distinct sections—Trips and Events—to facilitate seamless organization, participation, and social interaction. Users can create or join trips with subscription-based access, collaborate via dedicated group chats, and participate in events by paying a nominal fee. With features like location-based friend discovery and real-time communication, SocialConnect aims to enhance social engagement and streamline activity planning.
 
-Key Features
+2. Business Objectives
+Foster Social Connections: Enable users to meet new people through shared interests, events, and trips.
+Simplify Activity Planning: Provide tools for organizing group trips and events with integrated collaboration and communication features.
+Drive Engagement: Encourage participation in community events and trips to boost networking and social interactions.
+Ensure Accessibility: Offer an intuitive platform accessible on mobile and web with nominal fees to sustain operations.
+monetize Participation: Implement a subscription model for trips and a per-event fee structure to generate revenue.
+
+3. Project Scope
+3.1 In-Scope
+Trips Section: Creation, subscription, and management of group trips with itineraries, group chats, and collaboration tools.
+Events Section: Hosting and joining public/private events with RSVP management and participant lists.
+Friends Finder: Location-based discovery of users with shared interests.
+Group Chat: Dedicated chat rooms for trip participants.
+Payment System: Nominal fees for trip subscriptions and event participation.
+Multi-Event/Trip Participation: Support for users joining multiple trips and events simultaneously.
+Mobile and Web Accessibility: Responsive design and mobile apps for iOS and Android.
+
+3.2 Out-of-Scope
+Free access to trips or events without payment.
+Advanced AI-driven matchmaking for friends finder (basic interest-based matching only).
+Offline event or trip functionality (requires internet connectivity).
+Integration with external calendars or third-party video conferencing tools.
+4. Functional Requirements
+
+4.1 Trips Section
+Objective: Enable users to create, subscribe to, and collaborate on group trips with detailed planning tools.
+Trip Creation
+Description: Users can create trips with details like destination, dates, itinerary, accommodations, route maps, and images.
+Implementation Notes:
+
+Provide a form-based UI for trip creation with fields for text, dates, and file uploads (images, maps).
+Store trip data in a database with unique trip IDs
+Nominal subscription fee set by trip creator (e.g., INR 500-2,000).
+Trip Subscription
+Description: Users pay a nominal subscription fee to join a trip and access its features.
+Implementation Notes:
+integrate payment gateway (e.g., Razorpay, Stripe) for secure transactions.
+Generate confirmation and subscription status upon payment
+
+Group Collaboration
+Description: Trip members can edit itineraries, suggest changes, and share updates via a dedicated group chat.
+Implementation Notes:
+Implement collaborative editing for itineraries with version history
+Restrict editing to subscribed members only
+
+Trip Management
+Description: Trip creators can manage participant lists, approve/reject subscriptions, and update trip details.
+Implementation Notes:
+Provide a dashboard for creators to view and manage subscribers.
+Send notifications for subscription requests and updates.
+
+4.2 Events Section
+
+Objective: Facilitate hosting and joining of public or private events with nominal participation fees.
 Event Hosting
-Create and publish private or public events
+Description: Users can create events with details like time, location, description, images, and public/private access.
+Implementation Notes:
+Offer a form-based UI for event creation with geolocation input for venues.
+Allow event creators to set a nominal fee (e.g., INR 200-1,000).
+Event Joining
 
-Add event details like time, location, description, and images
+Description: Users pay a nominal fee to join events and confirm participation via RSVP.
+Implementation Notes:
+Integrate payment gateway for event fee processing.
+Provide RSVP confirmation and digital tickets post-payment.
 
-Manage RSVP and participant lists in real time
+Participant Management
+Description: Event hosts can view and manage participant lists in real time.
+Implementation Notes:
 
-Friends Finder (Nearby Users)
-Set your radius to discover people near you
+Create a host dashboard for tracking RSVPs and payments.
+Allow hosts to send updates or reminders to participants
+Public Event Discover
+Description: Users can browse and join open community events in their city or selected area.
 
-Match with people who share common interests and hobbies
+Implementation Notes:
+Implement a search/filter interface by location, date, and category.
+Display event details with participant count and fee.
 
-Great for making new friends, travel buddies, or collaborators
+4.3 Friends Finder
+Objective: Connect users with nearby individuals based on shared interests.
+Location-Based Discovery
+Description: Users set a radius (e.g., 5-50 km) to find nearby users.
 
-Trip Organization
-Plan group trips with detailed itineraries
+Implementation Notes:
+Use geolocation APIs to detect user location with consent
+Display nearby users in a list or map view.
+Interest-Based Matching
+Description: Match users based on hobbies and interests selected during profile setup.
 
-Share trip schedules, accommodations, and route maps
 
-Collaborate with friends to build trips together
+Implementation Notes:
+Allow users to select interests (e.g., travel, music, sports) in profile.
+Implement a basic algorithm to suggest matches based on common interests.
 
-Group Chat & Conversations
-Each event/trip comes with its own dedicated chat room
+4.4 Group Chat for Trips
+Objective: Provide real-time communication for trip participants.
+Dedicated Chat Rooms
+Description: Each trip has a group chat for subscribed members to coordinate and share updates.
 
-Chat with all participants for smooth coordination
+Implementation Notes:
+Use WebSocket or similar for real-time messaging.
+Restrict chat access to subscribed trip members.
+Rich Messaging
+Description: Support text, images, and links in chats with read receipts.
+Implementation Notes:
+Integrate a chat UI with media upload capabilities.
+Ensure message storage for historical access.
 
-Supports real-time communication for updates and ideas
+4.5 Payment System
+Objective: Enable secure payment processing for trip subscriptions and event fees.
+Payment Processing
+Description: Users pay nominal fees via integrated payment gateway for trips and events.
+Implementation Notes:
+Support multiple payment methods (UPI, cards, net banking).
+Ensure PCI compliance and secure transaction handling.
+Fee Management
+Description: Allow creators/hosts to set fees and track payments.
 
-Public Events & Open Participation
-Discover open community events in your city or selected area
 
-Join events hosted by others and engage with new people
 
-Boosts social interactions and networking opportunities
+Implementation Notes:
+Provide a fee-setting interface during trip/event creation.
+Generate payment reports for creators/hosts.
 
-Join Multiple Events
-Users can participate in multiple events simultaneously
+4.6 Multi-Event/Trip Participation
+Objective: Allow users to engage in multiple activities simultaneously.
+Concurrent Participation
+Description: Users can subscribe to multiple trips and join multiple events at once.
 
+
+
+Implementation Notes:
+Design user dashboard to display all active trips and events.
+Ensure no conflicts in UI/UX for managing multiple activities.
+
+5. Non-Functional Requirements
+Performance: Support up to 5,000 concurrent users with minimal latency (<1s for chat updates).
+Availability: 99.8% uptime to ensure reliable access.
+Security:
+End-to-end encryption for chats and payment transactions.
+GDPR/CCPA compliance for user data privacy.
+Scalability: Cloud-based architecture to handle increased user demand.
+Usability: Intuitive UI/UX with responsive design for web and mobile (iOS, Android).
+Localization: Support for English and Hindi initially, with extensibility for other languages.
+
+6. Assumptions and Constraints
+
+6.1 Assumptions
+Users have reliable internet access for real-time features.
+Payment gateways (e.g., Razorpay) are available and compliant in target markets.
+Third-party APIs for geolocation and messaging are stable and cost-effective.
+Nominal fees are sufficient to cover operational costs and generate revenue.
+
+6.2 Constraints
+Development timeline limited to 16-20 weeks for MVP launch.
+Budget constraints may limit native app development; prioritize responsive web initially.
+Dependency on third-party payment and geolocation services may introduce delays.
+Event chats are excluded to simplify scope (only trip chats included).
 Switch between events and chats without losing context
-
 Track all your upcoming and past events in a single dashboard
-
 Built for MVP testing and rapid user validation.
